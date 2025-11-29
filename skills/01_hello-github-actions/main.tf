@@ -16,7 +16,7 @@ module "postgres" {
   }
 
   ports    = ["5432:5432"]
-  networks = [docker_network.app_net.name]  # <-- this works now
+  networks = [docker_network.app_net.name] # <-- this works now
 }
 
 module "nginx" {
@@ -26,5 +26,5 @@ module "nginx" {
   image = "nginx:latest"
 
   ports    = ["8080:80"]
-  networks = [docker_network.app_net.name]  # <-- this works now
+  networks = [docker_network.app_net.name] # <-- this works now
 }

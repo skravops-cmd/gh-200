@@ -1,0 +1,42 @@
+name: 01_hello-github-actions
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+permissions:
+  contents: read
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Format
+        run: |
+          cd skills/01_hello-github-actions
+          terraform fmt -check -recursive
+
+      - name: Terraform Init
+        run: |
+          cd skills/01_hello-github-actions
+          terraform init
+
+      - name: Terraform Validate
+        run: |
+          cd skills/01_hello-github-actions
+          terraform validate
+
+      - name: Terraform Plan
+        run: |
+          cd skills/01_hello-github-actions
+          terraform plan
+
